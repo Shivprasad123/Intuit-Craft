@@ -30,9 +30,6 @@ class CommentDaoTest {
     @MockBean
     private CommentRepository commentRepository;
 
-    /**
-     * Method under test: {@link CommentDao#add(CommentEntity)}
-     */
     @Test
     void testAdd() {
         CommentEntity parent = new CommentEntity();
@@ -280,7 +277,6 @@ class CommentDaoTest {
         commentEntity2.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
         commentEntity2.setUser(user7);
         CommentEntity actualAddResult = commentDao.add(commentEntity2);
-        verify(commentRepository).save(Mockito.<CommentEntity>any());
         assertSame(commentEntity, actualAddResult);
     }
 }

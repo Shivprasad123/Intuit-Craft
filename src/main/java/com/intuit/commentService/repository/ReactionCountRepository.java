@@ -18,7 +18,7 @@ public interface ReactionCountRepository extends JpaRepository<ReactionCountEnti
     Optional<ReactionCountEntity> findByEntityTypeAndEntityIdAndReactionMetaId(String entityType,
                                                                                String entityId,
                                                                                Long reactionMetaId);
-    Optional<List<ReactionCountEntity>> findByEntityTypeAndEntityId(String entityType, String entityId);
+    Optional<List<ReactionCountEntity>> findByEntityTypeAndEntityIdOrderByCountDesc(String entityType, String entityId);
 
 
     @Modifying
