@@ -29,9 +29,7 @@ class ReactionMetaDaoTest {
     @MockBean
     private ReactionMetaRepository reactionMetaRepository;
 
-    /**
-     * Method under test: {@link ReactionMetaDao#getByReactionMetaId(Long)}
-     */
+
     @Test
     void testGetByReactionMetaId() {
         ReactionMetaEntity reactionMetaEntity = new ReactionMetaEntity();

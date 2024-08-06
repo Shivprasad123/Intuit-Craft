@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
@@ -11,10 +12,10 @@ import org.hibernate.annotations.ColumnDefault;
 @Builder
 @Table(name = "reaction_count")
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ReactionCountEntity {
 
-    public ReactionCountEntity(){}
     @Id
     @Column(nullable = false)
     private String entityId;

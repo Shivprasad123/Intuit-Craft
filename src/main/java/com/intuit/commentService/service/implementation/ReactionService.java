@@ -13,11 +13,13 @@ import com.intuit.commentService.entity.ReactionMetaEntity;
 import com.intuit.commentService.entity.UsersEntity;
 import com.intuit.commentService.service.IReactionCountService;
 import com.intuit.commentService.service.IReactionService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,12 +53,13 @@ public class ReactionService implements IReactionService {
         return new ImmutablePair<>(reactionResponse, reactionEntities.getValue());
     }
 
-    @Transactional //TODO Check how this works
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void add(ReactionRequest reactionRequest){
+        //TODO: need to handle LockAcquisitionException
         addReactionStrategy.add(reactionRequest);
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void delete(String entityType, String entityId,
                        String userId){
         Optional<ReactionEntity> reaction = reactionDao.get(entityType, entityId, userId);
@@ -66,5 +69,6 @@ public class ReactionService implements IReactionService {
                 reactionCountService.decrementCount(entityType, entityId, reaction.get().getReactionMeta().getId());
             }
         }
+        //TODO: need to handle LockAcquisitionException
     }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,9 +18,9 @@ import java.util.Date;
 @Table(name = "reaction")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
+@NoArgsConstructor
 public class ReactionEntity {
 
-    public ReactionEntity(){}
     @Id
     @Column(nullable = false)
     private String entityId;

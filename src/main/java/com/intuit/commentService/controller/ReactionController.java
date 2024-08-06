@@ -22,10 +22,10 @@ public class ReactionController {
 
     private final IReactionService reactionService;
 
-    @GetMapping("/{reaction_meta_id}/users")
+    @GetMapping("/{reactionMetaId}/users")
     private CSResponse<ReactionResponse> get(@RequestParam(name = "entityType") String entityType,
                                         @RequestParam(name = "entityId") String entityId,
-                                        @PathVariable("reaction_meta_id") Long reactionMetaId,
+                                        @PathVariable("reactionMetaId") Long reactionMetaId,
                                         @RequestParam(value = "pageNo", required = false) Integer pageNo,
                                         @RequestParam(value = "pageSize", required = false) Integer pageSize){
         Pair<ReactionResponse, PaginationData> reactionResponses =  reactionService.get(entityType, entityId, reactionMetaId, pageNo, pageSize);
@@ -47,7 +47,7 @@ public class ReactionController {
     }
 
     //TODO: Check URL
-    @DeleteMapping("/{entityType}/{entityId}/{userId}")
+    @DeleteMapping("/{entityType}/{entityId}/user/{userId}")
     private CSResponse<Void> delete(@PathVariable("entityType") String entityType,
                                    @PathVariable("entityId") String entityId,
                                    @PathVariable("userId") String userId){

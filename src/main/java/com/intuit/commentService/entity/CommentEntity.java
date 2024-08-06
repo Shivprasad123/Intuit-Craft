@@ -3,9 +3,7 @@ package com.intuit.commentService.entity;
 import com.intuit.commentService.dto.Request.Comment;
 import com.intuit.commentService.dto.Request.UpdateCommentRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,11 +18,8 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
+@NoArgsConstructor
 public class CommentEntity {
-
-    public CommentEntity(){
-        //TODO: Check why required
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -46,7 +41,7 @@ public class CommentEntity {
 
     private Boolean isEdited = false;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1250)
     private String content;
 
     @CreatedDate

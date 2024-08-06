@@ -33,10 +33,6 @@ class ReactionDaoTest {
     private ReactionRepository reactionRepository;
 
 
-
-    /**
-     * Method under test: {@link ReactionDao#get(String, String, String)}
-     */
     @Test
     void testGet2() {
         Optional<ReactionEntity> ofResult = Optional.of(mock(ReactionEntity.class));
@@ -49,9 +45,6 @@ class ReactionDaoTest {
         assertSame(ofResult, actualGetResult);
     }
 
-    /**
-     * Method under test: {@link ReactionDao#delete(String, String, String)}
-     */
     @Test
     void testDelete() {
         when(reactionRepository.deleteByEntityTypeAndEntityIdAndUsersId(Mockito.<String>any(), Mockito.<String>any(),
@@ -62,9 +55,6 @@ class ReactionDaoTest {
         assertEquals(1, actualDeleteResult);
     }
 
-    /**
-     * Method under test: {@link ReactionDao#add(ReactionEntity)}
-     */
     @Test
     void testAdd() {
         when(reactionRepository.save(Mockito.<ReactionEntity>any())).thenReturn(mock(ReactionEntity.class));

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,17 +17,15 @@ import java.util.Date;
 @Table(name = "post")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class PostEntity {
-
-    public PostEntity(){
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1250)
     private String content;
 
     @ManyToOne(cascade = CascadeType.MERGE)

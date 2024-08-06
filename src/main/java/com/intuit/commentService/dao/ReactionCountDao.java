@@ -18,7 +18,7 @@ public class ReactionCountDao {
 
     public List<ReactionCountEntity> get(String entityType, String entityId){
         Optional<List<ReactionCountEntity>> optionalReactionCounts =
-                reactionCountRepository.findByEntityTypeAndEntityId(entityType, entityId);
+                reactionCountRepository.findByEntityTypeAndEntityIdOrderByCountDesc(entityType, entityId);
         return optionalReactionCounts.orElseGet(ArrayList::new);
     }
 
